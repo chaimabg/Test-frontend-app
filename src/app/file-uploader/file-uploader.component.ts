@@ -28,7 +28,6 @@ export class FileUploaderComponent implements OnInit {
   }
 
 
-
   onUpload($event: Event) {
     // @ts-ignore
     this.file= $event.target.files[0];
@@ -43,6 +42,5 @@ export class FileUploaderComponent implements OnInit {
     if(this.file){
       this.fileService.addFile(this.file,this.fileName);
     }
-
   }
 }

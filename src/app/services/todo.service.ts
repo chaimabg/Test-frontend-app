@@ -18,24 +18,19 @@ export class TodoService {
  deleteToDo(todos:ToDo[],id:number):any {
 
    let elet: ToDo | undefined = todos.find(element => element.id == id);
-   console.log(elet);
    if (elet) {
      let ind = todos.indexOf(elet);
-     console.log(ind);
      todos.splice(ind, 1);
-     console.log(todos)
      return todos;
    }
  }
  filterToDo(todos:ToDo[],key:any):any{
-   const regex = new RegExp(key, "g");
-   console.log(regex);
+   const regex = new RegExp(key, "i");
 
    const todosFiltred = todos.filter(element =>{
-     String(element.id).match('1')
+     String(element.id).match(regex)
    });
 
-   console.log(todosFiltred)
    return(todosFiltred);
  }
 

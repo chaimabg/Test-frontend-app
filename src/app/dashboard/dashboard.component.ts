@@ -34,21 +34,14 @@ export class DashboardComponent implements OnInit {
     screenReaderCurrentLabel: `You're on page`
   };
 
-
-  applyFilter(event: Event) {
-
+  constructor(private todoService:TodoService) {
   }
 
-  constructor(private todoService:TodoService) {
+  ngOnInit(): void {
     this.todoService.getTodo().subscribe(todos => {
       this.TODO_List = todos;
       this.config.totalItems=this.TODO_List.length;
     });
-
-  }
-
-  ngOnInit(): void {
-
   }
   deleteTodo(id:number){
     this.TODO_List = this.todoService.deleteToDo(this.TODO_List,id);

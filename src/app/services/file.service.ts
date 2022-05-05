@@ -10,9 +10,11 @@ import {formatDate} from "@angular/common";
 export class FileService {
   fileUrl='http://localhost:5000/files'
   constructor(private http: HttpClient) { }
+
   getFiles():Observable<IFile[]>{
     return this.http.get<IFile[]>(this.fileUrl);
   }
+
   addFile(file:any,fileName:any){
     const formData = new FormData();
 

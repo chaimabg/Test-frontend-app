@@ -1,1 +1,32 @@
-<button  >Upload File</button>
+<div class="container  ">
+  <div class="jumbotron text-center">
+    <h1 class="">File Uploader</h1>
+  <input type="file" class="file-input"
+         (change)="onUpload($event)" #fileUpload multiple>
+
+  <div class="file-upload">
+
+    {{fileName || "No file uploaded yet."}}
+
+    <button mat-mini-fab color="primary" class="upload-btn"
+            (click)="fileUpload.click()">
+      <mat-icon>attach_file</mat-icon>
+    </button>
+  </div>
+
+    <button mat-raised-button color="primary" (click)="upload()">Upload</button>
+</div>
+
+  <div class="jumbotron" *ngIf="files.length>0">
+    <table >
+      <tr>
+      <th *ngFor="let header of headers">{{header}}</th>
+      </tr>
+      <tr *ngFor="let file of files">
+        <td>{{file.fileName}}</td>
+        <td>{{file.date}}</td>
+
+      </tr>
+    </table>
+  </div>
+</div>

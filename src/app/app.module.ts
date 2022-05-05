@@ -12,23 +12,29 @@ import {MatInputModule} from "@angular/material/input";
 import { HttpClientModule } from '@angular/common/http';
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {NgxPaginationModule} from "ngx-pagination";
+import {MatIconModule} from "@angular/material/icon";
+import {MatButtonModule} from "@angular/material/button";
+import {MatProgressBarModule} from "@angular/material/progress-bar";
 @NgModule({
   declarations: [
     AppComponent,
     FileUploaderComponent,
     DashboardComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MatTableModule,
-    MatFormFieldModule,
-    MatInputModule,
-    HttpClientModule,
-    MatPaginatorModule,
-    NgxPaginationModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MatTableModule,
+        MatFormFieldModule,
+        MatInputModule,
+        HttpClientModule,
+        MatPaginatorModule,
+        NgxPaginationModule,
+        MatIconModule,
+        MatButtonModule,
+        MatProgressBarModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

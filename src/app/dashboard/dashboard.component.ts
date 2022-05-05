@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {MatTableDataSource} from '@angular/material/table';
 import {TodoService} from "../services/todo.service";
-import {MatPaginator, PageEvent} from "@angular/material/paginator";
 
 export interface ToDo {
   userId: number;
@@ -19,8 +17,7 @@ export interface ToDo {
 })
 export class DashboardComponent implements OnInit {
   TODO_List: ToDo[] = [];
-  displayedColumns: string[] = ['UserId', 'Id', 'Title', 'Completed','action'];
-  dataSource: MatTableDataSource<any> ;
+  headers: string[] = ['UserId', 'Id', 'Title', 'Completed','action'];
 
   config = {
     id: 'custom',
@@ -39,29 +36,27 @@ export class DashboardComponent implements OnInit {
 
 
   applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+
   }
 
   constructor(private todoService:TodoService) {
     this.todoService.getTodo().subscribe(todos => {
       this.TODO_List = todos;
-      this.config.totalItems = this.TODO_List.length;
+      this.config.totalItems=this.TODO_List.length;
     });
-    this.dataSource = new MatTableDataSource(this.TODO_List);
+
   }
 
   ngOnInit(): void {
 
   }
   deleteTodo(id:number){
-    let elet :ToDo | undefined = this.TODO_List.find(element => element.id == id);
-    console.log(elet);
-    if(elet) {
-      let ind = this.TODO_List.indexOf(elet);
-      console.log(ind);
-      this.TODO_List.splice(ind,1);
-      console.log(this.TODO_List)
-    }
+    this.TODO_List = this.todoService.deleteToDo(this.TODO_List,id);
+    this.config.totalItems=this.TODO_List.length;
+  }
+
+  search($event: KeyboardEvent) {
+   this.TODO_List=this.todoService.filterToDo(this.TODO_List,$event.key)
+    console.log(this.TODO_List)
   }
 }
